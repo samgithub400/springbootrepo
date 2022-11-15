@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ios.model.User;
 import com.ios.service.UserService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
-@Slf4j
 @RequestMapping("/userapp")
 public class UserController {
 
@@ -29,7 +26,6 @@ public class UserController {
 	// create user api
 	@PostMapping("/saveuser")
 	public User createUser(@RequestBody User user) {
-		log.info("Create User Call Started.....");
 		return userService.saveUser(user);
 	}
 
