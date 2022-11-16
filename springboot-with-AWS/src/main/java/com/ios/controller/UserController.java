@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ios.exception.UserNotFoundException;
 import com.ios.model.User;
 import com.ios.service.UserService;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -43,19 +43,19 @@ public class UserController {
 
 	// get user by id api
 	@GetMapping("/getuserbyid/{userId}")
-	public User getUserById(@PathVariable("userId") long userId) {
+	public User getUserById(@PathVariable("userId") long userId) throws UserNotFoundException {
 		return userService.getUserById(userId);
 	}
 
 	// update user api
 	@PutMapping("/updateuser/{userId}")
-	public User updateUser(@RequestBody User user, @PathVariable("userId") long userId) {
+	public User updateUser(@RequestBody User user, @PathVariable("userId") long userId) throws UserNotFoundException {
 		return userService.updateUser(user, userId);
 	}
 
 	// delete user api
 	@DeleteMapping("/deleteuser/{userId}")
-	public ResponseEntity<Object> deleteUser(@RequestBody User user, @PathVariable("userId") long userId) {
-		return userService.deleteUser(user, userId);
+	public ResponseEntity<Object> deleteUser(@PathVariable("userId") long userId) throws UserNotFoundException {
+		return userService.deleteUser(userId);
 	}
 }

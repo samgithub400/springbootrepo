@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.ios.exception.UserNotFoundException;
 import com.ios.model.User;
 
 public interface UserService {
@@ -12,10 +13,10 @@ public interface UserService {
 
 	List<User> getAllUsers();
 
-	User getUserById(long userId);
+	User getUserById(long userId) throws UserNotFoundException;
 
-	User updateUser(User user, long userId);
+	User updateUser(User user, long userId) throws UserNotFoundException;
 
-	ResponseEntity<Object> deleteUser(User user, long userId);
+	ResponseEntity<Object> deleteUser(long userId) throws UserNotFoundException;
 
 }
