@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ios.model.User;
 import com.ios.service.UserService;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/userapp")
+@Slf4j
 public class UserController {
 
 	@Autowired
@@ -26,12 +30,14 @@ public class UserController {
 	// create user api
 	@PostMapping("/saveuser")
 	public User createUser(@RequestBody User user) {
+		log.info("Create User Call Started...!");
 		return userService.saveUser(user);
 	}
 
 	// get all users api
 	@GetMapping("/getAllUsers")
 	public List<User> getAllUsers() {
+		log.info("getAllUsers call Stared..!");
 		return userService.getAllUsers();
 	}
 
